@@ -66,3 +66,9 @@ S
 #.idea/sonarlint/issuestore/index.pb,9\f\9fe84ebb15faf917b7def6236dba604453cc61e0
 w
 G.idea/sonarlint/issuestore/4/4/442292b8a7efeabbe4cc176709b833b1792140ec,8\6\863e0292fd7e9b3e74dafd6cc01f73ba76346482
+t
+Dsrc/test/java/fr/dawan/business/category/CategoryControllerTest.java,f\7\f7020544eb5c681d13e22c7790ae96c5265cd089
+f
+6src/test/java/fr/dawan/business/category/MainTest.java,b\3\b3e9d7ef1a644ceabdee74ab77c9a575f14cd177
+u
+Esrc/test/java/fr/dawan/business/category/CategoryServiceImplTest.java,9\7\97377a2f49bcdaf72c092f697d5f395d6dcc6d71
