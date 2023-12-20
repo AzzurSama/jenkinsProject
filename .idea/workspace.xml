@@ -5,14 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8d374ea7-6ead-48c9-bb5d-ac21958c2ad6" name="Changes" comment="First Commit">
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/a/f/af178839eb595c94b6eb10ac6424ff8f6653ac6e" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/a/f/af178839eb595c94b6eb10ac6424ff8f6653ac6e" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/dawan/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/dawan/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/dawan/business/category/CategoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/dawan/business/category/CategoryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/dawan/business/generic/GenericController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/dawan/business/generic/GenericController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/fr/dawan/business/category/MainTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/fr/dawan/business/category/MainTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/fr/dawan/business/category/CategoryServiceImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/fr/dawan/business/category/CategoryServiceImplTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -151,7 +145,7 @@
       <workItem from="1702973441052" duration="585000" />
       <workItem from="1702974050895" duration="3789000" />
       <workItem from="1702977884864" duration="49000" />
-      <workItem from="1702977951792" duration="29687000" />
+      <workItem from="1702977951792" duration="30538000" />
     </task>
     <task id="LOCAL-00001" summary="First Commit">
       <option name="closed" value="true" />
@@ -166,6 +160,17 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="First Commit" />
