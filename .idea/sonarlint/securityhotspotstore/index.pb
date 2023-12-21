@@ -77,3 +77,6 @@ Bsrc/test/java/fr/dawan/business/article/ArticleControllerTest.java,c\7\c794553
 :
 
 DockerFile,4\0\40f7331d8e28c3c74df3da70560f362ea1796985
+:
+
+Dockerfile,6\6\6651ddff6eb82c840ced7c1dddee15c6e1913dd4

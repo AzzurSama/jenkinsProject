@@ -1,4 +1,4 @@
-FROM rsunix/yourkit-openjdk21
+FROM rsunix/yourkit-openjdk17
 
 ADD target/jenkinsProject.jar jenkinsProject.jar
 ENTRYPOINT ["java", "-jar", "jenkinsProject.jar"]
