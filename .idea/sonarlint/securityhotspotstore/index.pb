@@ -23,8 +23,6 @@ o
 ?src/main/java/fr/dawan/business/generic/GenericServiceImpl.java,4\e\4ecd7c4e66724f86d5a9928dfd91ae6143c6601b
 n
 >src/main/java/fr/dawan/business/generic/GenericController.java,d\5\d5b8d0491fac1974080d77f5a895db118410db8b
-o
-?src/main/java/fr/dawan/business/category/ArticleController.java,4\8\48db0cc575715738c7302c58164280392b3b72e8
 p
 @src/main/java/fr/dawan/business/category/CategoryController.java,5\2\5276b2f4ce2adc95d4bee3f47d9a341fac5d9b49
 q
@@ -66,9 +64,9 @@ S
 #.idea/sonarlint/issuestore/index.pb,9\f\9fe84ebb15faf917b7def6236dba604453cc61e0
 w
 G.idea/sonarlint/issuestore/4/4/442292b8a7efeabbe4cc176709b833b1792140ec,8\6\863e0292fd7e9b3e74dafd6cc01f73ba76346482
-t
-Dsrc/test/java/fr/dawan/business/category/CategoryControllerTest.java,f\7\f7020544eb5c681d13e22c7790ae96c5265cd089
 f
 6src/test/java/fr/dawan/business/category/MainTest.java,b\3\b3e9d7ef1a644ceabdee74ab77c9a575f14cd177
 u
 Esrc/test/java/fr/dawan/business/category/CategoryServiceImplTest.java,9\7\97377a2f49bcdaf72c092f697d5f395d6dcc6d71
+r
+Bsrc/test/java/fr/dawan/business/article/ArticleControllerTest.java,c\7\c7945533bfa0f1e5040e24bfd55fd9205cf83fe7
