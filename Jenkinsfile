@@ -17,6 +17,11 @@ pipeline {
             steps {
                 bat 'mvn clean package'
             }
+            post {
+                success {
+                    archiveArtifacts 'target/*.jar'
+                }
+            }
         }
         stage('Build Docker image') {
             steps {
