@@ -72,3 +72,5 @@ r
 Bsrc/test/java/fr/dawan/business/article/ArticleControllerTest.java,c\7\c7945533bfa0f1e5040e24bfd55fd9205cf83fe7
 ;
 JenkinsFile,2\2\22baaa42babe40fa251079ed1e8167c0eef7a13f
+;
+Jenkinsfile,0\c\0c2c5c506cef0ed2d3ad2b7e45e97980b66f5520
