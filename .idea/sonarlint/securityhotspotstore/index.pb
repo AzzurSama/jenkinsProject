@@ -74,3 +74,6 @@ Bsrc/test/java/fr/dawan/business/article/ArticleControllerTest.java,c\7\c794553
 JenkinsFile,2\2\22baaa42babe40fa251079ed1e8167c0eef7a13f
 ;
 Jenkinsfile,0\c\0c2c5c506cef0ed2d3ad2b7e45e97980b66f5520
+:
+
+DockerFile,4\0\40f7331d8e28c3c74df3da70560f362ea1796985
