@@ -25,5 +25,10 @@ pipeline {
                 }
             }
         }
+        stage('Start Docker Container') {
+            steps {
+                bat 'docker run --name jenkinsproject -d -p 9075:8080 jenkinsproject:latest projectJenkins.jar'
+            }
+        }
     }
 }
