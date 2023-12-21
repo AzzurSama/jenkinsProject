@@ -1,5 +1,5 @@
 FROM rsunix/yourkit-openjdk17
 
-ADD target/jenkinsProject.jar jenkinsProject.jar
-ENTRYPOINT ["java", "-jar", "jenkinsProject.jar"]
+ADD target/projectJenkins.jar projectJenkins.jar
+ENTRYPOINT ["java", "-jar", "projectJenkins.jar"]
 EXPOSE 8080
