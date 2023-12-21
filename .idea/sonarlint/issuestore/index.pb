@@ -70,3 +70,5 @@ u
 Esrc/test/java/fr/dawan/business/category/CategoryServiceImplTest.java,9\7\97377a2f49bcdaf72c092f697d5f395d6dcc6d71
 r
 Bsrc/test/java/fr/dawan/business/article/ArticleControllerTest.java,c\7\c7945533bfa0f1e5040e24bfd55fd9205cf83fe7
+;
+JenkinsFile,2\2\22baaa42babe40fa251079ed1e8167c0eef7a13f
