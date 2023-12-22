@@ -23,53 +23,26 @@ pipeline {
                 }
             }
         }
-       stage('Stop and Remove Docker Container') {
+       stage('Build Docker Image') {
            steps {
                script {
-                   def containerName = 'nostalgic_wu'
-
-                   def result = script(returnStatus: true) {
-                       bat "docker ps --filter \"name=$containerName\" | findstr $containerName"
-                   }
-
-                   if (result == 0) {
-                       echo "Le conteneur Docker $containerName existe et est en cours d'exécution."
-                   } else {
-                       echo "Le conteneur Docker $containerName n'existe pas ou n'est pas en cours d'exécution."
-                   }
-
-               }
+                   dockerImage = docker.build('jenkinsproject:latest')
+                   bat "docker image prune -f"
+              }
            }
        }
 
-        stage('Supprimer l\'image Docker') {
-            steps {
-                script {
-                    def imageName = 'jenkinsproject'
-
-                    // Vérifier si l'image existe
-                    //def imageExists = sh(script: "docker images -q ${imageName}", returnStatus: true) == 0
-
-                    // Supprimer l'image si elle existe
-                    if (true) {
-                        sh "docker rmi ${imageName}"
-                    } else {
-                        echo "L'image Docker ${imageName} n'existe pas."
-                    }
-                }
-            }
-        }
-        stage('Build Docker image') {
-            steps {
-                script {
-                    dockerImage = docker.build('jenkinsproject:latest')
-                }
-            }
-        }
-        stage('Start Docker Container') {
-            steps {
-                bat 'docker run --name jenkinsproject -d -p 9075:8080 jenkinsproject:latest projectJenkins.jar'
-            }
-        }
-    }
+       stage('Start Docker Container') {
+           steps {
+               script {
+                   try {
+                       bat "docker stop jenkinsproject"
+                       bat "docker rm jenkinsproject"
+                   } catch (Exception e) {
+                      echo '404 Not Found : jenkinsproject'
+                   }
+                   bat "docker run --name jenkinsproject -d -p 9075:8080 jenkinsproject:latest projectJenkins.jar"
+               }
+           }
+       }
 }
