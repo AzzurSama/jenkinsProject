@@ -23,6 +23,15 @@ pipeline {
                 }
             }
         }
+        stage('Delete old Docker image and Container') {
+            steps {
+                script {
+                    bat 'docker stop jenkinsproject'
+                    bat 'docker rm jenkinsproject'
+                    bat 'docker rmi jenkinsproject'
+                }
+            }
+        }
         stage('Build Docker image') {
             steps {
                 script {
@@ -32,9 +41,6 @@ pipeline {
         }
         stage('Start Docker Container') {
             steps {
-                bat 'docker stop jenkinsproject'
-                bat 'docker rm jenkinsproject'
-                bat 'docker rmi jenkinsproject'
                 bat 'docker run --name jenkinsproject -d -p 9075:8080 jenkinsproject:latest projectJenkins.jar'
             }
         }
