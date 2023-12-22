@@ -34,17 +34,17 @@ pipeline {
                        def containerRunning = bat(script: "docker ps -q --filter name=$containerName", returnStatus: true)
 
                        if (containerRunning == 0) {
-                           script {
-                               // Utiliser le plugin Durable Task pour exécuter les commandes Docker
-                               bat "docker stop $containerName"
-                               echo "Le conteneur Docker $containerName a été arrêté avec succès."
-
-                               // Supprimer le conteneur
-                               bat "docker rm $containerName"
-                               echo "Le conteneur Docker $containerName a été supprimé avec succès."
-                           }
-                       } else {
                            echo "Le conteneur Docker $containerName n'est pas en cours d'exécution."
+                       } else {
+                           script {
+                              // Utiliser le plugin Durable Task pour exécuter les commandes Docker
+                              bat "docker stop $containerName"
+                              echo "Le conteneur Docker $containerName a été arrêté avec succès."
+
+                              // Supprimer le conteneur
+                              bat "docker rm $containerName"
+                              echo "Le conteneur Docker $containerName a été supprimé avec succès."
+                          }
                        }
                    } catch (Exception e) {
                        echo "Erreur lors de la vérification du conteneur : ${e.message}"
