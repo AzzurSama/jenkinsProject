@@ -26,11 +26,14 @@ pipeline {
        stage('Stop and Remove Docker Container') {
            steps {
                script {
-                   if docker ps --filter "name=nostalgic_wu" | grep -q nostalgic_wu; then
-                       echo "Le conteneur existe et est en cours d'exécution."
-                   else
-                       echo "Le conteneur n'existe pas ou n'est pas en cours d'exécution."
-                   fi
+                   def containerName = 'nostalgic_wu'
+                   def containerRunning = bat(script: "docker ps --filter \"name=$containerName\" | findstr $containerName", returnStatus: true)
+
+                   if (containerRunning == 0) {
+                       echo "Le conteneur Docker $containerName existe et est en cours d'exécution."
+                   } else {
+                       echo "Le conteneur Docker $containerName n'existe pas ou n'est pas en cours d'exécution."
+                   }
                }
            }
        }
