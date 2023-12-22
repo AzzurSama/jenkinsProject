@@ -23,43 +23,35 @@ pipeline {
                 }
             }
         }
-        stage('Stop and Remove Docker Container') {
-            steps {
-                script {
-                    def containerName = 'jenkinsproject'
+       stage('Stop and Remove Docker Container') {
+           steps {
+               script {
+                   def containerName = 'jenkinsproject'
 
-                    // Arrêter et supprimer le conteneur s'il est en cours d'exécution
-                    try {
-                        // Vérifier si le conteneur est en cours d'exécution
-                        def containerRunning = bat(script: "docker ps -q --filter name=$containerName", returnStatus: true) == 0
+                   // Arrêter et supprimer le conteneur s'il est en cours d'exécution
+                   try {
+                       // Vérifier si le conteneur est en cours d'exécution
+                       def containerRunning = bat(script: "docker ps -q --filter name=$containerName", returnStatus: true)
 
-                        if (containerRunning) {
-                            script {
-                                // Utiliser le plugin Durable Task pour exécuter les commandes Docker
-                                def stopResult = bat "docker stop $containerName", returnStatus: true
-                                if (stopResult != 0) {
-                                    echo "Erreur lors de l'arrêt du conteneur Docker $containerName."
-                                } else {
-                                    echo "Le conteneur Docker $containerName a été arrêté avec succès."
-                                }
+                       if (containerRunning == 0) {
+                           script {
+                               // Utiliser le plugin Durable Task pour exécuter les commandes Docker
+                               bat "docker stop $containerName"
+                               echo "Le conteneur Docker $containerName a été arrêté avec succès."
 
-                                // Supprimer le conteneur
-                                def removeResult = bat "docker rm $containerName", returnStatus: true
-                                if (removeResult != 0) {
-                                    echo "Échec de la suppression du conteneur Docker $containerName."
-                                } else {
-                                    echo "Le conteneur Docker $containerName a été supprimé avec succès."
-                                }
-                            }
-                        } else {
-                            echo "Le conteneur Docker $containerName n'est pas en cours d'exécution."
-                        }
-                    } catch (Exception e) {
-                        echo "Erreur lors de la vérification du conteneur : ${e.message}"
-                    }
-                }
-            }
-        }
+                               // Supprimer le conteneur
+                               bat "docker rm $containerName"
+                               echo "Le conteneur Docker $containerName a été supprimé avec succès."
+                           }
+                       } else {
+                           echo "Le conteneur Docker $containerName n'est pas en cours d'exécution."
+                       }
+                   } catch (Exception e) {
+                       echo "Erreur lors de la vérification du conteneur : ${e.message}"
+                   }
+               }
+           }
+       }
 
         stage('Supprimer l\'image Docker') {
             steps {
