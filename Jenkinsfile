@@ -29,25 +29,24 @@ pipeline {
                     def containerName = 'jenkinsproject'
 
                     // Arrêter et supprimer le conteneur s'il est en cours d'exécution
-                    script {
-                        try {
-                            // Vérifier si le conteneur est en cours d'exécution
-                            def containerRunning = sh(script: "docker inspect -f '{{.State.Running}}' $containerName", returnStatus: true) == 0
+                    try {
+                        // Vérifier si le conteneur est en cours d'exécution
+                        def containerRunning = bat(script: "docker ps -q --filter name=$containerName", returnStatus: true) == 0
 
-                            if (containerRunning) {
-                                sh "docker stop $containerName"
-                                sh "docker rm $containerName"
-                                echo "Le conteneur Docker $containerName a été arrêté et supprimé."
-                            } else {
-                                echo "Le conteneur Docker $containerName n'est pas en cours d'exécution."
-                            }
-                        } catch (Exception e) {
-                            echo "Erreur lors de la vérification du conteneur : ${e.message}"
+                        if (containerRunning) {
+                            bat "docker stop $containerName"
+                            bat "docker rm $containerName"
+                            echo "Le conteneur Docker $containerName a été arrêté et supprimé."
+                        } else {
+                            echo "Le conteneur Docker $containerName n'est pas en cours d'exécution."
                         }
+                    } catch (Exception e) {
+                        echo "Erreur lors de la vérification du conteneur : ${e.message}"
                     }
                 }
             }
         }
+
         stage('Supprimer l\'image Docker') {
             steps {
                 script {
