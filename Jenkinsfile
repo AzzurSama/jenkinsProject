@@ -34,6 +34,7 @@ pipeline {
             steps {
                 bat 'docker stop jenkinsproject'
                 bat 'docker rm jenkinsproject'
+                bat 'docker rmi jenkinsproject'
                 bat 'docker run --name jenkinsproject -d -p 9075:8080 jenkinsproject:latest projectJenkins.jar'
             }
         }
