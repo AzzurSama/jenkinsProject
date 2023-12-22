@@ -27,9 +27,7 @@ pipeline {
            steps {
                script {
                    def containerName = 'nostalgic_wu'
-                   def containerRunning = bat(script: "docker ps --filter \"name=$containerName\" | findstr $containerName", returnStatus: true)
-
-                   if (containerRunning == 0) {
+                   if (bat(script: "docker ps --filter \"name=$containerName\" | findstr $containerName", returnStatus: true) == 0) {
                        echo "Le conteneur Docker $containerName existe et est en cours d'exécution."
                    } else {
                        echo "Le conteneur Docker $containerName n'existe pas ou n'est pas en cours d'exécution."
