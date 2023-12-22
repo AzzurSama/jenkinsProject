@@ -26,19 +26,19 @@ pipeline {
         stage('Delete old Docker image and Container') {
             steps {
                 script {
-                    docker images -q %jenkinsproject% > nul 2>&1
-                    if %errorlevel% neq 0 (
-                        echo 'Image %jenkinsproject% n existe pas.'.
-                    )else(
+                    bat 'docker images -q %jenkinsproject% > nul 2>&1'
+                    bat 'if %errorlevel% neq 0 ('
+                        bat "echo 'Image %jenkinsproject% n existe pas.'."
+                    bat ')else('
                         bat 'docker rmi jenkinsproject'
-                    )
-                    docker inspect -f {{.State.Running}} %jenkinsproject% > nul 2>&1
-                    if %errorlevel% neq 0 (
-                        echo 'Container %jenkinsproject% n existe pas.'.
-                    )else(
+                    bat ')'
+                    bat 'docker inspect -f {{.State.Running}} %jenkinsproject% > nul 2>&1'
+                    bat 'if %errorlevel% neq 0 ('
+                        bat "echo 'Container %jenkinsproject% n existe pas.'."
+                    bat ')else('
                         bat 'docker stop jenkinsproject'
                         bat 'docker rm jenkinsproject'
-                    )
+                    bat ')'
                 }
             }
         }
