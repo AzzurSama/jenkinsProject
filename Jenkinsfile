@@ -26,29 +26,11 @@ pipeline {
        stage('Stop and Remove Docker Container') {
            steps {
                script {
-                   def containerName = 'jenkinsproject'
-
-                   // Arrêter et supprimer le conteneur s'il est en cours d'exécution
-                   try {
-                       // Vérifier si le conteneur est en cours d'exécution
-                       def containerRunning = bat(script: "docker ps -q --filter name=$containerName", returnStatus: true)
-
-                       if (containerRunning == 0) {
-                           echo "Le conteneur Docker $containerName n'est pas en cours d'exécution."
-                       } else {
-                           script {
-                              // Utiliser le plugin Durable Task pour exécuter les commandes Docker
-                              bat "docker stop $containerName"
-                              echo "Le conteneur Docker $containerName a été arrêté avec succès."
-
-                              // Supprimer le conteneur
-                              bat "docker rm $containerName"
-                              echo "Le conteneur Docker $containerName a été supprimé avec succès."
-                          }
-                       }
-                   } catch (Exception e) {
-                       echo "Erreur lors de la vérification du conteneur : ${e.message}"
-                   }
+                   if docker ps --filter "name=nostalgic_wu" | grep -q nostalgic_wu; then
+                       echo "Le conteneur existe et est en cours d'exécution."
+                   else
+                       echo "Le conteneur n'existe pas ou n'est pas en cours d'exécution."
+                   fi
                }
            }
        }
@@ -59,10 +41,10 @@ pipeline {
                     def imageName = 'jenkinsproject'
 
                     // Vérifier si l'image existe
-                    def imageExists = sh(script: "docker images -q ${imageName}", returnStatus: true) == 0
+                    //def imageExists = sh(script: "docker images -q ${imageName}", returnStatus: true) == 0
 
                     // Supprimer l'image si elle existe
-                    if (imageExists) {
+                    if (true) {
                         sh "docker rmi ${imageName}"
                     } else {
                         echo "L'image Docker ${imageName} n'existe pas."
