@@ -34,9 +34,23 @@ pipeline {
                         def containerRunning = bat(script: "docker ps -q --filter name=$containerName", returnStatus: true) == 0
 
                         if (containerRunning) {
-                            bat "docker stop $containerName"
-                            bat "docker rm $containerName"
-                            echo "Le conteneur Docker $containerName a été arrêté et supprimé."
+                            script {
+                                // Utiliser le plugin Durable Task pour exécuter les commandes Docker
+                                def stopProcess = bat "docker stop $containerName", returnStatus: true
+                                if (stopProcess != 0) {
+                                    echo "Le conteneur Docker $containerName n'est pas en cours d'exécution."
+                                } else {
+                                    echo "Le conteneur Docker $containerName a été arrêté avec succès."
+                                }
+
+                                // Supprimer le conteneur
+                                def removeProcess = bat "docker rm $containerName", returnStatus: true
+                                if (removeProcess != 0) {
+                                    echo "Échec de la suppression du conteneur Docker $containerName."
+                                } else {
+                                    echo "Le conteneur Docker $containerName a été supprimé avec succès."
+                                }
+                            }
                         } else {
                             echo "Le conteneur Docker $containerName n'est pas en cours d'exécution."
                         }
