@@ -23,22 +23,38 @@ pipeline {
                 }
             }
         }
-        stage('Delete old Docker image and Container') {
+        stage('Arrêter et Supprimer le Conteneur Docker') {
             steps {
                 script {
-                    bat 'docker images -q %jenkinsproject% > nul 2>&1'
-                    bat 'if %errorlevel% neq 0 ('
-                        bat "echo 'Image %jenkinsproject% n existe pas.'."
-                    bat ')else('
-                        bat 'docker rmi jenkinsproject'
-                    bat ')'
-                    bat 'docker inspect -f {{.State.Running}} %jenkinsproject% > nul 2>&1'
-                    bat 'if %errorlevel% neq 0 ('
-                        bat "echo 'Container %jenkinsproject% n existe pas.'."
-                    bat ')else('
-                        bat 'docker stop jenkinsproject'
-                        bat 'docker rm jenkinsproject'
-                    bat ')'
+                    def containerName = 'jenkinsproject'
+
+                    // Vérifier si le conteneur est en cours d'exécution
+                    def containerRunning = sh(script: "docker inspect -f {{.State.Running}} ${containerName}", returnStatus: true) == 0
+
+                    // Arrêter et supprimer le conteneur s'il est en cours d'exécution
+                    if (containerRunning) {
+                        sh "docker stop ${containerName}"
+                        sh "docker rm ${containerName}"
+                    } else {
+                        echo "Le conteneur Docker ${containerName} n'est pas en cours d'exécution."
+                    }
+                }
+            }
+        }
+        stage('Supprimer l\'image Docker') {
+            steps {
+                script {
+                    def imageName = 'jenkinsproject'
+
+                    // Vérifier si l'image existe
+                    def imageExists = sh(script: "docker images -q ${imageName}", returnStatus: true) == 0
+
+                    // Supprimer l'image si elle existe
+                    if (imageExists) {
+                        sh "docker rmi ${imageName}"
+                    } else {
+                        echo "L'image Docker ${imageName} n'existe pas."
+                    }
                 }
             }
         }
