@@ -32,7 +32,7 @@ pipeline {
                     script {
                         try {
                             // Vérifier si le conteneur est en cours d'exécution
-                            def containerRunning = sh(script: "docker inspect -f {{.State.Running}} $containerName", returnStatus: true) == 0
+                            def containerRunning = sh(script: "docker inspect -f '{{.State.Running}}' $containerName", returnStatus: true) == 0
 
                             if (containerRunning) {
                                 sh "docker stop $containerName"
